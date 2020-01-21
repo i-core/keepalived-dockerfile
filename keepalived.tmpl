@@ -1,0 +1,20 @@
+vrrp_instance _routerid_ {
+    state _state_
+    priority _priority_
+
+    interface _interface_
+    virtual_router_id _routerid_
+
+    advert_int 2
+
+    unicast_peer {
+    }
+
+    authentication {
+        auth_type PASS
+        auth_pass _password_
+    }
+
+    virtual_ipaddress {
+    }
+}
