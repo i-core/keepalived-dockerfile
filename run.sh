@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-
+#!/usr/bin/env bash
 # Check environment variables and set default values
 _checkEnv() {
     if [ -z "${KEEPALIVED_ROUTER_ID}" ] || [ -z "${KEEPALIVED_UNICAST_PEERS}" ] || [ -z "${KEEPALIVED_VIRTUAL_IPS}" ]; then
@@ -9,8 +8,11 @@ _checkEnv() {
         if [ -z "${KEEPALIVED_STATE}" ]; then
 	        export KEEPALIVED_STATE="BACKUP"
 	    fi
-        if [ -z "${KEEPALIVED_PRIORITY}" ]; then
-	       export KEEPALIVED_PRIORITY="$(($RANDOM%200))"
+        if [ -z "${KEEPALIVED_PRIORITY}" ] && [ "${KEEPALIVED_STATE^^}" == "BACKUP" ]; then
+	       export KEEPALIVED_PRIORITY="$(($RANDOM%199))"
+	    fi
+        if [ -z "${KEEPALIVED_PRIORITY}" ] && [ "${KEEPALIVED_STATE^^}" == "MASTER" ]; then
+	       export KEEPALIVED_PRIORITY="200"
 	    fi
         if [ -z "${KEEPALIVED_INTERFACE}" ]; then
 	        export KEEPALIVED_INTERFACE="ens192"

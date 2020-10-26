@@ -1,5 +1,5 @@
 # keepalived-dockerfile
-Dockerfile for keepalived sservice on Alpine Linux.
+Dockerfile for keepalived service on Alpine Linux.
 
 Features
 --------
@@ -9,7 +9,7 @@ Features
     - KEEPALIVED_UNICAST_PEERS - An IP of a peer participating in the VRRP group. Required.
     - KEEPALIVED_VIRTUAL_IPS - VRRP virtual ip address. Required.
     - KEEPALIVED_STATE - Defines the server role as 'MASTER' or 'BACKUP'. Default: BACKUP
-    - KEEPALIVED_PRIORITY -  Election value, the server configured with the highest priority will become the Master. Default: random 1-200
+    - KEEPALIVED_PRIORITY -  Election value, the server configured with the highest priority will become the Master. Default: random 1-199 for backup, 200 for master
     - KEEPALIVED_INTERFACE - The host interface that keepalived will monitor and use for VRRP traffic. Default: ens192
     - KEEPALIVED_PASSWORD - A shared password used to authenticate each node in a VRRP group.
 
